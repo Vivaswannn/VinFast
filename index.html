@@ -16,319 +16,84 @@
             --success-color: #10b981;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --vinfast-blue: #1c3c78;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
         body {
             background-color: var(--bg-color);
             background-image: radial-gradient(circle at top right, #1e3a8a22, transparent 40%),
                               radial-gradient(circle at bottom left, #3b82f611, transparent 40%);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
         }
 
-        /* Glassmorphism Classes */
-        .glass {
-            background: var(--surface-color);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--surface-border);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            border-bottom: 1px solid var(--surface-border);
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-container h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            background: linear-gradient(to right, #60a5fa, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header-controls {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-
-        /* Buttons & Inputs */
-        button, select, input {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--surface-border);
-            color: var(--text-main);
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.2s ease;
-        }
-
-        button {
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        button:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        button.primary {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        button.primary:hover {
-            background: var(--primary-hover);
-            transform: translateY(-1px);
-        }
+        .glass { background: var(--surface-color); backdrop-filter: blur(12px); border: 1px solid var(--surface-border); border-radius: 16px; box-shadow: 0 4px 30px rgba(0,0,0,0.1); }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid var(--surface-border); background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-container h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; background: linear-gradient(to right, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header-controls { display: flex; gap: 16px; align-items: center; }
         
-        button.danger {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger-color);
-            border-color: rgba(239, 68, 68, 0.3);
-        }
+        button, select, input { background: rgba(15, 23, 42, 0.6); border: 1px solid var(--surface-border); color: var(--text-main); padding: 10px 16px; border-radius: 8px; font-size: 0.95rem; outline: none; transition: all 0.2s ease; }
+        button { cursor: pointer; font-weight: 500; }
+        button:hover { background: rgba(255, 255, 255, 0.1); }
+        button.primary { background: var(--primary-color); border-color: var(--primary-color); }
+        button.primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+        button.danger { background: rgba(239, 68, 68, 0.1); color: var(--danger-color); border-color: rgba(239, 68, 68, 0.3); }
+        button.danger:hover { background: var(--danger-color); color: white; }
+        select:focus, input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); }
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
 
-        button.danger:hover {
-            background: var(--danger-color);
-            color: white;
-        }
+        main { display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 32px 40px; flex: 1; }
+        .sidebar-forms { display: flex; flex-direction: column; gap: 24px; }
+        .form-card { padding: 24px; }
+        .form-card h2 { font-size: 1.25rem; margin-bottom: 20px; font-weight: 600; }
+        .form-group { margin-bottom: 16px; display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group input, .form-group select { width: 100%; }
 
-        select:focus, input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-        }
+        .content-area { display: flex; flex-direction: column; gap: 24px; }
+        .tabs { display: flex; gap: 12px; border-bottom: 1px solid var(--surface-border); padding-bottom: 16px; }
+        .tab { padding: 8px 16px; border-radius: 8px; cursor: pointer; color: var(--text-muted); transition: all 0.2s; font-weight: 500; }
+        .tab:hover { color: var(--text-main); background: rgba(255, 255, 255, 0.05); }
+        .tab.active { color: var(--primary-color); background: rgba(59, 130, 246, 0.1); }
 
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-            cursor: pointer;
-        }
-
-        /* Main Layout */
-        main {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 24px;
-            padding: 32px 40px;
-            flex: 1;
-        }
-
-        /* Sidebar Forms */
-        .sidebar-forms {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .form-card {
-            padding: 24px;
-        }
-
-        .form-card h2 {
-            font-size: 1.25rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-group label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-        }
-
-        /* Content Area */
-        .content-area {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        /* Tabs */
-        .tabs {
-            display: flex;
-            gap: 12px;
-            border-bottom: 1px solid var(--surface-border);
-            padding-bottom: 16px;
-        }
-
-        .tab {
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            color: var(--text-muted);
-            transition: all 0.2s;
-            font-weight: 500;
-        }
-
-        .tab:hover {
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .tab.active {
-            color: var(--primary-color);
-            background: rgba(59, 130, 246, 0.1);
-        }
-
-        /* Panels */
-        .panel {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .panel.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Calendar Grid */
-        .calendar-grid {
-            display: grid;
-            gap: 16px;
-        }
-
-        .day-card {
-            padding: 20px;
-        }
-
-        .day-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--surface-border);
-        }
-
-        .day-header h3 {
-            color: var(--primary-color);
-        }
-
-        .booking-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .booking-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 12px 16px;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-        }
-
+        .calendar-grid { display: grid; gap: 16px; }
+        .day-card { padding: 20px; border-left: 3px solid var(--surface-border); }
+        .day-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--surface-border); }
+        .day-header h3 { color: var(--primary-color); }
+        
+        .booking-list { display: flex; flex-direction: column; gap: 12px; }
+        .booking-item { display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--primary-color); }
         .booking-item.completed { border-left-color: var(--success-color); opacity: 0.7;}
         .booking-item.canceled { border-left-color: var(--danger-color); opacity: 0.5;}
+        .booking-details { display: flex; flex-direction: column; gap: 4px; }
+        .booking-title { font-weight: 600; }
+        .booking-meta { font-size: 0.85rem; color: var(--text-muted); }
+        .booking-actions { display: flex; gap: 8px; }
 
-        .booking-details {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .booking-title {
-            font-weight: 600;
-        }
-
-        .booking-meta {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        
-        .booking-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        /* Badge */
-        .badge {
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
+        .badge { padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
         .badge.booked { background: rgba(59, 130, 246, 0.2); color: var(--primary-color); }
         .badge.completed { background: rgba(16, 185, 129, 0.2); color: var(--success-color); }
         .badge.canceled { background: rgba(239, 68, 68, 0.2); color: var(--danger-color); }
 
-        /* Vehicle List */
-        .vehicle-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 16px;
-        }
+        .vehicle-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+        .vehicle-card { padding: 16px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); border-radius: 8px; }
 
-        .vehicle-card {
-            padding: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.2);
-            border-radius: 8px;
-        }
+        /* Fix Admin Overlap Bug */
+        .admin-only { display: none !important; }
+        body[data-role="Admin"] .tab.admin-only { display: block !important; }
+        body[data-role="Admin"] .form-card.admin-only { display: block !important; }
+        
+        .panel { display: none; animation: fadeIn 0.3s ease; }
+        .panel.active { display: block; }
+        body[data-role="Admin"] .panel.admin-only { display: none !important; }
+        body[data-role="Admin"] .panel.admin-only.active { display: block !important; }
 
-        /* Utility */
-        .hidden { display: none !important; }
-        .admin-only { display: none; }
-        body[data-role="Admin"] .admin-only { display: block; }
-
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-
     <header>
-        <div class="logo-container">
-            <h1>VF Demo Tracker</h1>
-        </div>
+        <div class="logo-container"><h1>VF Demo Tracker</h1></div>
         <div class="header-controls">
             <select id="roleSelector" onchange="switchRole(this.value)">
                 <option value="Sales Exec">Sales Executive</option>
@@ -339,21 +104,12 @@
     </header>
 
     <main>
-        <!-- Sidebar -->
         <div class="sidebar-forms">
-            
-            <!-- Book Test Drive Form -->
             <div class="form-card glass">
                 <h2>Book Test Drive</h2>
                 <form id="bookingForm" onsubmit="handleBooking(event)">
-                    <div class="form-group">
-                        <label>Vehicle</label>
-                        <select id="b_vehicle" required></select>
-                    </div>
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" id="b_date" required>
-                    </div>
+                    <div class="form-group"><label>Vehicle</label><select id="b_vehicle" required></select></div>
+                    <div class="form-group"><label>Date</label><input type="date" id="b_date" required></div>
                     <div class="form-group">
                         <label>Time Slot</label>
                         <select id="b_time" required>
@@ -368,131 +124,167 @@
                             <option value="05:00 PM">05:00 PM</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>Customer Name</label>
-                        <input type="text" id="b_customer" placeholder="John Doe" required>
-                    </div>
-                    <button type="submit" class="primary" style="width: 100%; margin-top: 8px;">Book Slot</button>
+                    <div class="form-group"><label>Customer Name</label><input type="text" id="b_customer" placeholder="John Doe" required></div>
+                    <button type="submit" class="primary" style="width: 100%; margin-top: 8px;" id="bookBtn">Book Slot</button>
                 </form>
             </div>
 
-            <!-- Manage Vehicles Form (Admin Only) -->
             <div class="form-card glass admin-only">
                 <h2>Add Demo Vehicle</h2>
                 <form id="carForm" onsubmit="handleAddCar(event)">
-                    <div class="form-group">
-                        <label>Model Name</label>
-                        <input type="text" id="c_model" placeholder="e.g. VF 8 Plus" required>
-                    </div>
-                    <div class="form-group">
-                        <label>License Plate (Optional)</label>
-                        <input type="text" id="c_plate" placeholder="ABC-1234">
-                    </div>
+                    <div class="form-group"><label>Model Name</label><input type="text" id="c_model" placeholder="e.g. VF 8 Plus" required></div>
+                    <div class="form-group"><label>License Plate</label><input type="text" id="c_plate" placeholder="ABC-1234"></div>
                     <button type="submit" style="width: 100%; margin-top: 8px;">Add Vehicle</button>
                 </form>
             </div>
-
         </div>
 
-        <!-- Content Area -->
         <div class="content-area">
             <div class="tabs">
-                <div class="tab active" onclick="switchTab('calendar')">Calendar View</div>
-                <div class="tab admin-only" onclick="switchTab('vehicles')">Manage Vehicles</div>
+                <div class="tab active" onclick="switchTab('calendar', event)">Calendar View</div>
+                <div class="tab admin-only" onclick="switchTab('vehicles', event)">Manage Vehicles</div>
             </div>
 
-            <!-- Calendar Panel -->
             <div id="panel-calendar" class="panel active">
-                <div class="calendar-grid" id="calendarContainer">
-                    <!-- Calendar injected by JS -->
-                </div>
+                <div class="calendar-grid" id="calendarContainer"></div>
             </div>
 
-            <!-- Vehicles Panel (Admin Only) -->
             <div id="panel-vehicles" class="panel admin-only">
                 <div class="glass form-card">
                     <h2>Fleet Management</h2>
-                    <div class="vehicle-list" id="vehicleListContainer">
-                        <!-- Vehicles injected by JS -->
-                    </div>
+                    <div class="vehicle-list" id="vehicleListContainer"></div>
                 </div>
             </div>
         </div>
     </main>
 
-    <script>
-        // --- State Management ---
-        let state = {
-            role: 'Sales Exec',
-            cars: JSON.parse(localStorage.getItem('vf_cars')) || [
-                { id: 'c1', model: 'VF 8 Eco', plate: 'DEMO-801' },
-                { id: 'c2', model: 'VF 9 Plus', plate: 'DEMO-901' }
-            ],
-            bookings: JSON.parse(localStorage.getItem('vf_bookings')) || []
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getDatabase, ref, onValue, push, remove, update, get } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAX9rEc7o621KAJQND8KVNRhg4DHrueGPI",
+            authDomain: "vinfast-19159.firebaseapp.com",
+            projectId: "vinfast-19159",
+            storageBucket: "vinfast-19159.firebasestorage.app",
+            messagingSenderId: "664066896957",
+            appId: "1:664066896957:web:2c1c00a260a6cfd7de2654",
+            measurementId: "G-TQH1LHYGRQ"
         };
 
-        // Initialize App
-        function init() {
-            document.getElementById('b_date').min = new Date().toISOString().split("T")[0];
-            document.getElementById('roleSelector').value = state.role;
-            document.body.setAttribute('data-role', state.role);
-            
-            refreshUI();
-        }
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
 
-        function saveData() {
-            localStorage.setItem('vf_cars', JSON.stringify(state.cars));
-            localStorage.setItem('vf_bookings', JSON.stringify(state.bookings));
-        }
+        let state = {
+            role: 'Sales Exec',
+            cars: [],
+            bookings: []
+        };
 
-        // --- UI Interactions ---
-        function switchRole(newRole) {
+        // Attach functions to window for HTML event handlers
+        window.switchRole = (newRole) => {
             state.role = newRole;
             document.body.setAttribute('data-role', state.role);
-            if (newRole !== 'Admin') switchTab('calendar');
-        }
+            if (newRole !== 'Admin') {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                document.querySelector('.tabs .tab').classList.add('active');
+                document.getElementById('panel-calendar').classList.add('active');
+            }
+        };
 
-        function switchTab(tabId) {
+        window.switchTab = (tabId, event) => {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-            
-            event.target.classList.add('active');
+            if(event && event.target) event.target.classList.add('active');
+            else document.querySelector('.tabs .tab').classList.add('active');
             document.getElementById(`panel-${tabId}`).classList.add('active');
-        }
+        };
 
-        function refreshUI() {
-            renderVehicleSelect();
-            renderVehicleList();
-            renderCalendar();
-        }
-
-        // --- Vehicles Logic ---
-        function handleAddCar(e) {
+        window.handleAddCar = async (e) => {
             e.preventDefault();
             const model = document.getElementById('c_model').value.trim();
             const plate = document.getElementById('c_plate').value.trim();
-            
-            const newCar = {
-                id: 'c' + Date.now(),
-                model,
-                plate: plate || 'N/A'
-            };
-            
-            state.cars.push(newCar);
-            saveData();
-            document.getElementById('carForm').reset();
-            refreshUI();
-            alert('Vehicle added successfully!');
-        }
+            try {
+                await push(ref(db, 'cars'), { model, plate: plate || 'N/A' });
+                document.getElementById('carForm').reset();
+                alert('Vehicle added successfully!');
+            } catch (err) { alert('Error adding car: ' + err.message); }
+        };
 
-        function deleteCar(id) {
+        window.deleteCar = async (id) => {
             if(!confirm("Are you sure you want to remove this Demo car?")) return;
-            state.cars = state.cars.filter(c => c.id !== id);
-            // Optionally, we could clean up bookings or leave them as history
-            saveData();
-            refreshUI();
-        }
+            try { await remove(ref(db, `cars/${id}`)); } 
+            catch (err) { alert('Error removing car: ' + err.message); }
+        };
 
+        window.handleBooking = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('bookBtn');
+            btn.disabled = true;
+            btn.textContent = 'Checking availability...';
+
+            const carId = document.getElementById('b_vehicle').value;
+            const date = document.getElementById('b_date').value;
+            const time = document.getElementById('b_time').value;
+            const customer = document.getElementById('b_customer').value.trim();
+            
+            try {
+                // Strict Duplicate Check from Database
+                const snapshot = await get(ref(db, 'bookings'));
+                let isConflict = false;
+                if (snapshot.exists()) {
+                    snapshot.forEach(child => {
+                        const b = child.val();
+                        if (b.carId === carId && b.date === date && b.time === time && b.status === 'Booked') {
+                            isConflict = true;
+                        }
+                    });
+                }
+
+                if (isConflict) {
+                    alert("⚠️ Strict Conflict: This vehicle is already booked for this exact time slot. Please select another time or vehicle.");
+                    btn.disabled = false;
+                    btn.textContent = 'Book Slot';
+                    return;
+                }
+
+                const car = state.cars.find(c => c.id === carId);
+                const newBooking = { carId, carModel: car.model, date, time, customer, status: 'Booked', bookedBy: state.role };
+                
+                await push(ref(db, 'bookings'), newBooking);
+                document.getElementById('bookingForm').reset();
+                alert('Test drive booked successfully!');
+
+            } catch (err) {
+                alert('Error booking slot: ' + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Book Slot';
+            }
+        };
+
+        window.updateBookingStatus = async (id, newStatus) => {
+            if(!confirm(`Mark this test drive as ${newStatus}?`)) return;
+            try { await update(ref(db, `bookings/${id}`), { status: newStatus }); } 
+            catch (err) { alert('Error updating status: ' + err.message); }
+        };
+
+        window.exportToExcel = () => {
+            if (state.bookings.length === 0) return alert("No data to export!");
+            let csvContent = "data:text/csv;charset=utf-8,Date,Time,Vehicle Model,Customer,Status,Booked By\n";
+            state.bookings.forEach(b => {
+                const customer = b.customer.replace(/,/g, '');
+                csvContent += `${b.date},${b.time},${b.carModel},${customer},${b.status},${b.bookedBy}\n`;
+            });
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `Vinfast_TestDrives.csv`);
+            document.body.appendChild(link); link.click(); document.body.removeChild(link);
+        };
+
+        // UI Renderers
         function renderVehicleSelect() {
             const select = document.getElementById('b_vehicle');
             select.innerHTML = '';
@@ -506,170 +298,74 @@
 
         function renderVehicleList() {
             const container = document.getElementById('vehicleListContainer');
-            container.innerHTML = '';
-            
             if (state.cars.length === 0) {
                 container.innerHTML = '<p class="booking-meta">No vehicles in fleet.</p>';
                 return;
             }
-
-            state.cars.forEach(car => {
-                container.innerHTML += `
-                    <div class="vehicle-card">
-                        <div>
-                            <div class="booking-title">${car.model}</div>
-                            <div class="booking-meta">${car.plate}</div>
-                        </div>
-                        <button class="danger" onclick="deleteCar('${car.id}')" style="padding: 6px 10px;">Remove</button>
+            container.innerHTML = state.cars.map(car => `
+                <div class="vehicle-card">
+                    <div>
+                        <div class="booking-title">${car.model}</div>
+                        <div class="booking-meta">${car.plate}</div>
                     </div>
-                `;
-            });
-        }
-
-        // --- Booking Logic ---
-        function handleBooking(e) {
-            e.preventDefault();
-            const carId = document.getElementById('b_vehicle').value;
-            const date = document.getElementById('b_date').value;
-            const time = document.getElementById('b_time').value;
-            const customer = document.getElementById('b_customer').value.trim();
-
-            // Check for double booking (only active bookings)
-            const conflict = state.bookings.find(b => 
-                b.carId === carId && 
-                b.date === date && 
-                b.time === time && 
-                b.status === 'Booked'
-            );
-
-            if (conflict) {
-                alert("Error: This vehicle is already booked for this time slot. Please select another time or vehicle.");
-                return;
-            }
-
-            const car = state.cars.find(c => c.id === carId);
-
-            const newBooking = {
-                id: 'b' + Date.now(),
-                carId,
-                carModel: car.model,
-                date,
-                time,
-                customer,
-                status: 'Booked', // Booked, Completed, Canceled
-                bookedBy: state.role
-            };
-
-            state.bookings.push(newBooking);
-            saveData();
-            document.getElementById('bookingForm').reset();
-            refreshUI();
-            alert('Test drive booked successfully!');
-        }
-
-        function updateBookingStatus(id, newStatus) {
-            if(!confirm(`Mark this test drive as ${newStatus}?`)) return;
-            const booking = state.bookings.find(b => b.id === id);
-            if(booking) {
-                booking.status = newStatus;
-                saveData();
-                refreshUI();
-            }
+                    <button class="danger" onclick="deleteCar('${car.id}')" style="padding: 6px 10px;">Remove</button>
+                </div>
+            `).join('');
         }
 
         function renderCalendar() {
             const container = document.getElementById('calendarContainer');
-            container.innerHTML = '';
-
-            // Group bookings by date
-            const grouped = {};
-            // Sort bookings by date and time
-            const sortedBookings = [...state.bookings].sort((a, b) => {
-                if(a.date !== b.date) return a.date.localeCompare(b.date);
-                // Simple time sort (works assuming standard formats, could be improved)
-                return a.time.localeCompare(b.time);
-            });
-
-            sortedBookings.forEach(b => {
-                if(!grouped[b.date]) grouped[b.date] = [];
-                grouped[b.date].push(b);
-            });
-
-            const dates = Object.keys(grouped).sort();
-
-            if (dates.length === 0) {
-                container.innerHTML = `
-                    <div class="glass form-card" style="text-align:center; padding: 40px;">
-                        <h3 style="color: var(--text-muted)">No upcoming test drives.</h3>
-                    </div>
-                `;
-                return;
-            }
-
-            dates.forEach(date => {
-                const dateObj = new Date(date);
-                const displayDate = dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
-                
-                let html = `
-                    <div class="glass day-card">
-                        <div class="day-header">
-                            <h3>${displayDate}</h3>
-                        </div>
-                        <div class="booking-list">
-                `;
-
-                grouped[date].forEach(b => {
-                    html += `
-                        <div class="booking-item ${b.status.toLowerCase()}">
-                            <div class="booking-details">
-                                <div class="booking-title">${b.time} - ${b.carModel}</div>
-                                <div class="booking-meta">Customer: ${b.customer} | Status: <span class="badge ${b.status.toLowerCase()}">${b.status}</span></div>
-                            </div>
-                            <div class="booking-actions">
-                    `;
-                    
-                    if (b.status === 'Booked') {
-                        html += `
-                            <button class="primary" style="padding: 6px 10px; font-size: 0.8rem;" onclick="updateBookingStatus('${b.id}', 'Completed')">Complete</button>
-                            <button class="danger" style="padding: 6px 10px; font-size: 0.8rem;" onclick="updateBookingStatus('${b.id}', 'Canceled')">Cancel</button>
-                        `;
-                    }
-                    html += `</div></div>`;
-                });
-
-                html += `</div></div>`;
-                container.innerHTML += html;
-            });
-        }
-
-        // --- Export Feature ---
-        function exportToExcel() {
             if (state.bookings.length === 0) {
-                alert("No data to export!");
+                container.innerHTML = '<div class="glass form-card" style="text-align:center; padding: 40px;"><h3 style="color: var(--text-muted)">No upcoming test drives.</h3></div>';
                 return;
             }
 
-            let csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "Date,Time,Vehicle Model,Customer,Status,Booked By\n";
+            const grouped = {};
+            [...state.bookings].sort((a,b) => a.date !== b.date ? a.date.localeCompare(b.date) : a.time.localeCompare(b.time))
+            .forEach(b => { if(!grouped[b.date]) grouped[b.date] = []; grouped[b.date].push(b); });
 
-            state.bookings.forEach(b => {
-                // Ensure strings don't contain commas that break CSV format
-                const customer = b.customer.replace(/,/g, '');
-                const row = `${b.date},${b.time},${b.carModel},${customer},${b.status},${b.bookedBy}`;
-                csvContent += row + "\n";
-            });
-
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `Vinfast_TestDrives_${new Date().toISOString().split("T")[0]}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            container.innerHTML = Object.keys(grouped).sort().map(date => {
+                const displayDate = new Date(date).toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', timeZone: 'UTC' });
+                return `
+                <div class="glass day-card">
+                    <div class="day-header"><h3>${displayDate}</h3></div>
+                    <div class="booking-list">
+                        ${grouped[date].map(b => `
+                            <div class="booking-item ${b.status.toLowerCase()}">
+                                <div class="booking-details">
+                                    <div class="booking-title">${b.time} - ${b.carModel}</div>
+                                    <div class="booking-meta">Customer: ${b.customer} | Status: <span class="badge ${b.status.toLowerCase()}">${b.status}</span></div>
+                                </div>
+                                <div class="booking-actions">
+                                    ${b.status === 'Booked' ? `
+                                        <button class="primary" style="padding: 6px 10px; font-size: 0.8rem;" onclick="updateBookingStatus('${b.id}', 'Completed')">Complete</button>
+                                        <button class="danger" style="padding: 6px 10px; font-size: 0.8rem;" onclick="updateBookingStatus('${b.id}', 'Canceled')">Cancel</button>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>`;
+            }).join('');
         }
 
-        // Boot
-        init();
+        // Initialize and Listeners
+        document.getElementById('b_date').min = new Date().toISOString().split("T")[0];
+        document.body.setAttribute('data-role', state.role);
+
+        onValue(ref(db, 'cars'), (snapshot) => {
+            state.cars = [];
+            snapshot.forEach(child => { state.cars.push({ id: child.key, ...child.val() }); });
+            renderVehicleSelect();
+            renderVehicleList();
+        });
+
+        onValue(ref(db, 'bookings'), (snapshot) => {
+            state.bookings = [];
+            snapshot.forEach(child => { state.bookings.push({ id: child.key, ...child.val() }); });
+            renderCalendar();
+        });
+
     </script>
 </body>
 </html>
