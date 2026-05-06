@@ -105,13 +105,9 @@
 </head>
 <body>
     <header>
-        <div class="logo-container"><h1>VF Demo Tracker</h1></div>
+        <div class="logo-container"><h1 onclick="unlockAdmin()" style="cursor:pointer; user-select:none;" title="Click 5 times for Admin access">VF Demo Tracker</h1></div>
         <div class="header-controls">
-            <select id="roleSelector" onchange="switchRole(this.value)">
-                <option value="Sales Exec">Sales Executive</option>
-                <option value="Admin">Administrator</option>
-            </select>
-            <button onclick="exportToExcel()" class="primary">Export to Excel</button>
+            <button onclick="exportToExcel()" class="primary admin-only">Export to Excel</button>
         </div>
     </header>
 
@@ -193,17 +189,24 @@
             bookings: []
         };
 
-        // Attach functions to window for HTML event handlers
-        window.switchRole = (newRole) => {
-            state.role = newRole;
-            document.body.setAttribute('data-role', state.role);
-            if (newRole !== 'Admin') {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-                document.querySelector('.tabs .tab').classList.add('active');
-                document.getElementById('panel-calendar').classList.add('active');
+        let adminClickCount = 0;
+        window.unlockAdmin = () => {
+            if (state.role === 'Admin') return; // already admin
+            adminClickCount++;
+            if (adminClickCount >= 5) {
+                adminClickCount = 0;
+                const pwd = prompt("Enter Administrator Password:");
+                if (pwd === "vinfast123") {
+                    state.role = 'Admin';
+                    document.body.setAttribute('data-role', state.role);
+                    alert("Admin Mode Unlocked!");
+                } else if (pwd !== null) {
+                    alert("Incorrect password.");
+                }
             }
         };
+
+        // Attach functions to window for HTML event handlers
 
         window.switchTab = (tabId, event) => {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -284,16 +287,21 @@
 
         window.exportToExcel = () => {
             if (state.bookings.length === 0) return alert("No data to export!");
-            let csvContent = "data:text/csv;charset=utf-8,Date,Time,Vehicle Model,Customer,Status,Booked By\n";
+            let csvContent = "Date,Time,Vehicle Model,Customer,Status,Booked By\n";
             state.bookings.forEach(b => {
-                const customer = b.customer.replace(/,/g, '');
-                csvContent += `${b.date},${b.time},${b.carModel},${customer},${b.status},${b.bookedBy}\n`;
+                const customer = (b.customer || '').replace(/,/g, '');
+                csvContent += `${b.date || 'N/A'},${b.time},${b.carModel},${customer},${b.status},${b.bookedBy}\n`;
             });
-            const encodedUri = encodeURI(csvContent);
+            
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
             const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
+            link.setAttribute("href", url);
             link.setAttribute("download", `Vinfast_TestDrives.csv`);
-            document.body.appendChild(link); link.click(); document.body.removeChild(link);
+            document.body.appendChild(link); 
+            link.click(); 
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
         };
 
         // UI Renderers
